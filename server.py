@@ -1,6 +1,7 @@
 import socket
 import sys
 
+FORMAT = 'utf-8'
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 server_address = ('localhost', 10000)
@@ -22,7 +23,7 @@ try:
         print('received "%s"' % (data), file = sys.stderr)
         if data:
             print('sending data back to the client', file = sys.stderr)
-            connection.sendall(data)
+            connection.sendall(data.encode(FORMAT))
         else:
             print('no more data from', client_address)
             break
